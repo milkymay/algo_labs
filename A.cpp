@@ -3,7 +3,7 @@
 using namespace std;
 
 vector<int> used;
-vector<int> ord;
+vector<int> ans;
 int n, m;
 vector<vector<int>> g;
 
@@ -18,7 +18,7 @@ void dfs(int v) {
         }
     }
     used[v] = 2;
-    ord.push_back(v);
+    ans.push_back(v);
 }
 
 void top_sort() {
@@ -27,7 +27,7 @@ void top_sort() {
             dfs(v);
         }
     }
-    reverse(ord.begin(), ord.end());
+    reverse(ans.begin(), ans.end());
 }
 
 int main() {
@@ -42,7 +42,7 @@ int main() {
         g[a].push_back(b);
     }
     top_sort();
-    for (auto c : ord) {
+    for (auto c : ans) {
         cout << c + 1 << " ";
     }
     return 0;

@@ -5,7 +5,8 @@ using namespace std;
 vector<int> p;
 vector<pair<int, int>> res;
 vector<pair<int, pair<int, int>>> g;
-int n, m, cost;
+int n, m;
+long long cost;
 
 int get(int v) {
     return (v == p[v]) ? v : (p[v] = get(p[v]));

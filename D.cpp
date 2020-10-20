@@ -5,7 +5,7 @@ using namespace std;
 int const inf = 22000;
 
 vector<int> used, in, up, colors;
-vector<int> ord;
+vector<int> ans;
 int n, m, t;
 vector<vector<pair<int, int>>> g;
 
@@ -28,7 +28,7 @@ void dfs_init(int v, int e) {
             dfs_init(u, to_num.second);
             up[v] = min(up[v], up[u]);
             if (up[u] > in[v]) {
-                ord.push_back(to_num.second);
+                ans.push_back(to_num.second);
             }
         }
     }

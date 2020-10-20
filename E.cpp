@@ -5,7 +5,7 @@ using namespace std;
 int const inf = 22000;
 
 vector<int> used, used1, in, up, cnt, colors;
-set<int> ord;
+set<int> ans;
 int n, m, t;
 vector<vector<pair<int, int>>> g;
 int max_color;
@@ -28,12 +28,12 @@ void dfs(int v, int e) {
             cnt[v]++;
             up[v] = min(up[v], up[u]);
             if (e != -1 && up[u] >= in[v]) {
-                ord.insert(v);
+                ans.insert(v);
             }
         }
     }
     if (e == -1 && cnt[v] >= 2) {
-        ord.insert(v);
+        ans.insert(v);
     }
 }
 

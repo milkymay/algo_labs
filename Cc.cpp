@@ -4,8 +4,8 @@ using namespace std;
 
 int const inf = 22000;
 
-vector<int> used, in, up, cnt;
-set<int> ord;
+vector<int> used, in, up;
+vector<int> ans, cnt;
 int n, m, t;
 vector<vector<int>> g;
 
@@ -25,12 +25,12 @@ void dfs(int v, int p) {
             cnt[v]++;
             up[v] = min(up[v], up[u]);
             if (p != -1 && up[u] >= in[v]) {
-                ord.insert(v);
+                ans.push_back(v);
             }
         }
     }
     if (p == -1 && cnt[v] >= 2) {
-        ord.insert(v);
+        ans.push_back(v);
     }
 }
 
@@ -54,8 +54,9 @@ int main() {
             dfs(i, -1);
         }
     }
-    cout << ord.size() << "\n";
-    for (auto c : ord) {
+    sort(ans.begin(), ans.end());
+    cout << ans.size() << "\n";
+    for (auto c : ans) {
         cout << c + 1 << " ";
     }
     return 0;

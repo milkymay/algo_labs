@@ -5,11 +5,11 @@ using namespace std;
 int const inf = 22000;
 
 vector<int> used, in, up;
-vector<int> ord;
+vector<int> ans;
 int n, m, t;
 vector<vector<pair<int, int>>> g;
 
-void dfs_init(int v, int p) {
+void dfs(int v, int p) {
     t++;
     in[v] = t;
     up[v] = t;
@@ -23,10 +23,10 @@ void dfs_init(int v, int p) {
             up[v] = min(up[v], in[u]);
         }
         if (used[u] == 0) {
-            dfs_init(u, v);
+            dfs(u, v);
             up[v] = min(up[v], up[u]);
             if (up[u] > in[v]) {
-                ord.push_back(to_num.second);
+                ans.push_back(to_num.second);
             }
         }
     }
@@ -48,12 +48,12 @@ int main() {
     }
     for (int i = 0; i < n; i++) {
         if (!used[i]) {
-            dfs_init(i, i);
+            dfs(i, i);
         }
     }
-    sort(ord.begin(), ord.end());
-    cout << ord.size() << "\n";
-    for (auto c : ord) {
+    sort(ans.begin(), ans.end());
+    cout << ans.size() << "\n";
+    for (auto c : ans) {
         cout << c + 1 << " ";
     }
     return 0;
